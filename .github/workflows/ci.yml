@@ -5,6 +5,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with: { path: devkit }
+      - uses: actions/checkout@v4
+        with: { repository: rayhanlimon/envdoctor, path: envdoctor }
+      - uses: actions/checkout@v4
+        with: { repository: rayhanlimon/untrack, path: untrack }
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - run: npm test
+        working-directory: devkit
