@@ -1,0 +1,12 @@
+---
+name: Bug report
+about: Router or delegation problem
+title: "[bug] "
+labels: bug
+body:
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: OS, command run, expected vs actual output
+---

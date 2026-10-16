@@ -1,0 +1,12 @@
+{
+  "name": "devkit",
+  "version": "0.1.0",
+  "description": "One CLI for the rayhanlimon dev-toolbox: envdoctor, untrack (more commands landing weekly).",
+  "type": "module",
+  "bin": { "devkit": "./bin/devkit.js" },
+  "scripts": { "test": "node --test test/*.test.js" },
+  "keywords": ["devtools", "cli", "toolbox", "dotenv", "git", "nodejs"],
+  "license": "MIT",
+  "engines": { "node": ">=18" },
+  "repository": { "type": "git", "url": "https://github.com/rayhanlimon/devkit.git" }
+}
