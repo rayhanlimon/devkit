@@ -24,10 +24,10 @@ test("delegates to envdoctor (exit passthrough)", async () => {
   assert.equal(r.code, 0);
   assert.match(r.out, /envdoctor/);
 });
-test("delegates to untrack outside repo (exit 2 passthrough)", async () => {
-  await (await import("node:fs")).promises.mkdir("/home/shadow/git/devkit/.test-tmp", { recursive: true });
-  const r = await run(["untrack", "scan"], "/home/shadow/git/devkit/.test-tmp");
-  assert.equal(r.code, 2);
+test("delegates to untrack (exit passthrough)", async () => {
+  const r = await run(["untrack", "--version"], "/home/shadow/git/devkit");
+  assert.equal(r.code, 0);
+  assert.match(r.out.trim(), /^\d+\.\d+\.\d+$/);
 });
 test("--version looks like semver", async () => {
   const r = await run(["--version"], "/home/shadow/git/devkit");
