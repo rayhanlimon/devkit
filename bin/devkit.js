@@ -27,8 +27,17 @@ async function load() {
 }
 function sibling(tool, rel) {
   const override = process.env.DEVKIT_SIBLINGS;
-  const base = override ? path.resolve(override) : path.resolve(ROOT, "..");
-  return path.join(base, tool, rel);
+  // candidate bases: explicit override, repo parent, grandparent (nested CI checkouts)
+  const bases = [
+    ...(override ? [path.resolve(override)] : []),
+    path.resolve(ROOT, ".."),
+    path.resolve(ROOT, "..", ".."),
+  ];
+  for (const base of bases) {
+    const cand = path.join(base, tool, rel);
+    try { fs.accessSync(cand); return cand; } catch { /* try next */ }
+  }
+  return path.join(bases[0], tool, rel); // fall back: surfaces a clear ENOENT
 }
 const argv = process.argv.slice(2);
 const cmds = await load();
